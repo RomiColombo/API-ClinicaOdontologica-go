@@ -1,0 +1,959 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "API Clinica Odontologica",
+        "title": "Certified Tech Developer",
+        "contact": {
+            "name": "Romina Colombo",
+            "email": "colombo.romina@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/odontologos": {
+            "get": {
+                "description": "Listar todos los odontologos",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "odontologo"
+                ],
+                "summary": "Listar todos los odontologos",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/web.response"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Crear un odontologo",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "odontologo"
+                ],
+                "summary": "Crear un odontologo",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "token",
+                        "name": "token",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Odontologo",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.Odontologo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/web.response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/odontologos/{id}": {
+            "get": {
+                "description": "Listar odontologo por ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "odontologo"
+                ],
+                "summary": "Listar odontologo por ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/web.response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modificar completamente un odontologo",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "odontologo"
+                ],
+                "summary": "Modificar completamente un odontologo",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "token",
+                        "name": "token",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Odontologo",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.Odontologo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/web.response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Borrar un odontologo",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "odontologo"
+                ],
+                "summary": "Borrar un odontologo",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "token",
+                        "name": "token",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content",
+                        "schema": {
+                            "$ref": "#/definitions/web.response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Modificar parcialmente un odontologo",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "odontologo"
+                ],
+                "summary": "Modificar parcialmente un odontologo",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "token",
+                        "name": "token",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Odontologo",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.Odontologo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/web.response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/pacientes": {
+            "get": {
+                "description": "Listar todos los pacientes",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "paciente"
+                ],
+                "summary": "Listar todos los pacientes",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/web.response"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Crear un paciente",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "paciente"
+                ],
+                "summary": "Crear un paciente",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "token",
+                        "name": "token",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Paciente",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.Paciente"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/web.response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/pacientes/{id}": {
+            "get": {
+                "description": "Listar paciente por ID",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "paciente"
+                ],
+                "summary": "Listar paciente por ID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/web.response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modificar completamente un paciente",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "paciente"
+                ],
+                "summary": "Modificar completamente un paciente",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "token",
+                        "name": "token",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Paciente",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.Paciente"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/web.response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Borrar un paciente",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "paciente"
+                ],
+                "summary": "Borrar un paciente",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "token",
+                        "name": "token",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content",
+                        "schema": {
+                            "$ref": "#/definitions/web.response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Modificar parcialmente un paciente",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "paciente"
+                ],
+                "summary": "Modificar parcialmente un paciente",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "token",
+                        "name": "token",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Paciente",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.Paciente"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/web.response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/turnos": {
+            "get": {
+                "description": "Listar todos los turnos",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "turno"
+                ],
+                "summary": "Listar todos los turnos",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/web.response"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Crear un turno con estructura de turno y odontologo",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "turno"
+                ],
+                "summary": "Crear un turno con estructura de turno y odontologo",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "token",
+                        "name": "token",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Turno",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.Turno"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/web.response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/turnos/dni/{dni}": {
+            "get": {
+                "description": "Traer turno por DNI del turno",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "turno"
+                ],
+                "summary": "Traer turno por DNI del turno",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "dni",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/web.response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/turnos/partial": {
+            "post": {
+                "description": "Crear un turno con dni de turno y matricula de odontologo",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "turno"
+                ],
+                "summary": "Crear un turno con dni de turno y matricula de odontologo",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "token",
+                        "name": "token",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "Turno",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.Turno"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/web.response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/turnos/{id}": {
+            "get": {
+                "description": "Traer turno por DNI del turno",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "turno"
+                ],
+                "summary": "Traer turno por DNI del turno",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/web.response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Modificar completamente un turno",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "turno"
+                ],
+                "summary": "Modificar completamente un turno",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "token",
+                        "name": "token",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Turno",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.Turno"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/web.response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Borrar un turno",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "turno"
+                ],
+                "summary": "Borrar un turno",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "token",
+                        "name": "token",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content",
+                        "schema": {
+                            "$ref": "#/definitions/web.response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Modificar parcialmente un turno",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "turno"
+                ],
+                "summary": "Modificar parcialmente un turno",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "token",
+                        "name": "token",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Turno",
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/domain.Turno"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/web.response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/web.errorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "domain.Odontologo": {
+            "type": "object",
+            "required": [
+                "apellido",
+                "matricula",
+                "nombre"
+            ],
+            "properties": {
+                "apellido": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "matricula": {
+                    "type": "integer"
+                },
+                "nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "domain.Paciente": {
+            "type": "object",
+            "required": [
+                "apellido",
+                "dni",
+                "domicilio",
+                "fechaAlta",
+                "nombre"
+            ],
+            "properties": {
+                "apellido": {
+                    "type": "string"
+                },
+                "dni": {
+                    "type": "integer"
+                },
+                "domicilio": {
+                    "type": "string"
+                },
+                "fechaAlta": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "nombre": {
+                    "type": "string"
+                }
+            }
+        },
+        "domain.Turno": {
+            "type": "object",
+            "required": [
+                "fecha",
+                "hora",
+                "odontologo",
+                "paciente"
+            ],
+            "properties": {
+                "descripcion": {
+                    "type": "string"
+                },
+                "fecha": {
+                    "type": "string"
+                },
+                "hora": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "odontologo": {
+                    "$ref": "#/definitions/domain.Odontologo"
+                },
+                "paciente": {
+                    "$ref": "#/definitions/domain.Paciente"
+                }
+            }
+        },
+        "web.errorResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer"
+                }
+            }
+        },
+        "web.response": {
+            "type": "object",
+            "properties": {
+                "data": {}
+            }
+        }
+    }
+}

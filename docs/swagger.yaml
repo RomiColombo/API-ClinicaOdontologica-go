@@ -1,0 +1,641 @@
+definitions:
+  domain.Odontologo:
+    properties:
+      apellido:
+        type: string
+      id:
+        type: integer
+      matricula:
+        type: integer
+      nombre:
+        type: string
+    required:
+    - apellido
+    - matricula
+    - nombre
+    type: object
+  domain.Paciente:
+    properties:
+      apellido:
+        type: string
+      dni:
+        type: integer
+      domicilio:
+        type: string
+      fechaAlta:
+        type: string
+      id:
+        type: integer
+      nombre:
+        type: string
+    required:
+    - apellido
+    - dni
+    - domicilio
+    - fechaAlta
+    - nombre
+    type: object
+  domain.Turno:
+    properties:
+      descripcion:
+        type: string
+      fecha:
+        type: string
+      hora:
+        type: string
+      id:
+        type: integer
+      odontologo:
+        $ref: '#/definitions/domain.Odontologo'
+      paciente:
+        $ref: '#/definitions/domain.Paciente'
+    required:
+    - fecha
+    - hora
+    - odontologo
+    - paciente
+    type: object
+  web.errorResponse:
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+      status:
+        type: integer
+    type: object
+  web.response:
+    properties:
+      data: {}
+    type: object
+info:
+  contact:
+    email: colombo.romina@gmail.com
+    name: Romina Colombo
+  description: API Clinica Odontologica
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Certified Tech Developer
+  version: "1.0"
+paths:
+  /odontologos:
+    get:
+      description: Listar todos los odontologos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Listar todos los odontologos
+      tags:
+      - odontologo
+    post:
+      description: Crear un odontologo
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: Odontologo
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Odontologo'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/web.response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Crear un odontologo
+      tags:
+      - odontologo
+  /odontologos/{id}:
+    delete:
+      description: Borrar un odontologo
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/web.response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Borrar un odontologo
+      tags:
+      - odontologo
+    get:
+      description: Listar odontologo por ID
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Listar odontologo por ID
+      tags:
+      - odontologo
+    patch:
+      description: Modificar parcialmente un odontologo
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Odontologo
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Odontologo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Modificar parcialmente un odontologo
+      tags:
+      - odontologo
+    put:
+      description: Modificar completamente un odontologo
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Odontologo
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Odontologo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Modificar completamente un odontologo
+      tags:
+      - odontologo
+  /pacientes:
+    get:
+      description: Listar todos los pacientes
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Listar todos los pacientes
+      tags:
+      - paciente
+    post:
+      description: Crear un paciente
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: Paciente
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Paciente'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/web.response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Crear un paciente
+      tags:
+      - paciente
+  /pacientes/{id}:
+    delete:
+      description: Borrar un paciente
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/web.response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Borrar un paciente
+      tags:
+      - paciente
+    get:
+      description: Listar paciente por ID
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Listar paciente por ID
+      tags:
+      - paciente
+    patch:
+      description: Modificar parcialmente un paciente
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Paciente
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Paciente'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Modificar parcialmente un paciente
+      tags:
+      - paciente
+    put:
+      description: Modificar completamente un paciente
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Paciente
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Paciente'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Modificar completamente un paciente
+      tags:
+      - paciente
+  /turnos:
+    get:
+      description: Listar todos los turnos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+      summary: Listar todos los turnos
+      tags:
+      - turno
+    post:
+      description: Crear un turno con estructura de turno y odontologo
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: Turno
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Turno'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/web.response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Crear un turno con estructura de turno y odontologo
+      tags:
+      - turno
+  /turnos/{id}:
+    delete:
+      description: Borrar un turno
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/web.response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Borrar un turno
+      tags:
+      - turno
+    get:
+      description: Traer turno por DNI del turno
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Traer turno por DNI del turno
+      tags:
+      - turno
+    patch:
+      description: Modificar parcialmente un turno
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Turno
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Turno'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Modificar parcialmente un turno
+      tags:
+      - turno
+    put:
+      description: Modificar completamente un turno
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Turno
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Turno'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Modificar completamente un turno
+      tags:
+      - turno
+  /turnos/dni/{dni}:
+    get:
+      description: Traer turno por DNI del turno
+      parameters:
+      - description: dni
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/web.response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Traer turno por DNI del turno
+      tags:
+      - turno
+  /turnos/partial:
+    post:
+      description: Crear un turno con dni de turno y matricula de odontologo
+      parameters:
+      - description: token
+        in: header
+        name: token
+        required: true
+        type: integer
+      - description: Turno
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/domain.Turno'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/web.response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/web.errorResponse'
+      summary: Crear un turno con dni de turno y matricula de odontologo
+      tags:
+      - turno
+swagger: "2.0"
